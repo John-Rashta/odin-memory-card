@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Card } from './Card';
 
+let initialize = false;
+
 function MemoryApp() {
     const [pokeData, setPokeData] = useState([
         {name: "charizard", imageURL: ""},
@@ -15,11 +17,13 @@ function MemoryApp() {
         {name: "togepi", imageURL: ""}
     ]);
     const [score, setScore] = useState({currentScore: 0, currentCards: [], currentOrder: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],  bestScore: 0});
-
-    if (!pokeData.every((val) => val.imageURL !== "")) {
-        getData(pokeData).then((val) => setPokeData(val));
-    };
-
+    
+    useEffect(() => {
+        if (!initialize) {
+            initialize = true;
+            getData(pokeData).then((val) => setPokeData(val));
+        }
+    }, []);
 
     function updateScore(name) {
         if (!score.currentCards.every((val) => val !== name) ) {
@@ -66,6 +70,7 @@ async function getData(data) {
 }
 
 async function getPokeData(name) {
+    console.log("hello")
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`, {mode: 'cors'});
     const pokeData = await response.json();
     return pokeData.sprites.front_default;
