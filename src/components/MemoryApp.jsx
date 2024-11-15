@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Card } from './Card';
+import '../styles/memoryapp.css';
 
 let initialize = false;
 
@@ -39,16 +40,24 @@ function MemoryApp() {
     };
 
     return (
-        <div>
+        <div className="pageContainer">
             <header>Memory Card Game</header>
             <main>
-                <div>
-                    <div>Score: {score.currentScore} </div>
-                    <div>Best Score:{score.bestScore} </div>
+                <div className="descriptionScore">
+                    <div>
+                        Click on each pokemon only once 
+                        <p>Max Score is 10</p>
+                    </div>
+                    <div>
+                        <div>Score: {score.currentScore} </div>
+                        <div>Best Score:{score.bestScore} </div>
+                    </div>
                 </div>
-                {score.currentOrder.map((index) => {
-                    return <Card key={pokeData[index].name} pokemon={pokeData[index]} onChoice={updateScore} />
-                })}
+                <div className="cardGrid">
+                    {score.currentOrder.map((index) => {
+                        return <Card key={pokeData[index].name} pokemon={pokeData[index]} onChoice={updateScore} />
+                    })}
+                </div>
             </main>
         </div>
     )

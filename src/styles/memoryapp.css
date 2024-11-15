@@ -1,0 +1,37 @@
+@import url("./rules.css");
+
+
+/* basic layout and style */
+
+.pageContainer {
+    height: 100vh;
+    background-color:#77f3ce;
+    
+}
+
+.cardGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 300px);
+    gap: 25px;
+    padding: 0px 30px 0px 30px;
+    justify-content: center;
+    background-color: #10b981;
+    
+}
+
+
+header {
+    text-align: center;
+    padding: 20px;
+    font-size: 2.25rem;
+}
+
+
+.descriptionScore {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 5vw;
+    font-size: 1.3rem;
+
+
+}
